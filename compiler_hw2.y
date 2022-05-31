@@ -3,8 +3,8 @@
 /* Definition section */
 %{
     #include "compiler_hw_common.h" //Extern variables that communicate with lex
-    // #define YYDEBUG 1
-    // int yydebug = 1;
+    #define YYDEBUG 1
+    int yydebug = 1;
 
     extern int yylineno;
     extern int yylex();
@@ -128,7 +128,6 @@ FunctionDeclStmt
 ParameterList
     : Parameter
     | ParameterList ',' Parameter
-    | 
 ;
 
 Parameter
@@ -445,9 +444,9 @@ SwitchStmt
 ;
 
 CaseStmt 
-    : CASE INT_LIT ':' { printf("case %s\n", $<s_val>2); } Block  
+    : CASE INT_LIT ':' {printf("case %s\n",$<s_val>2);} Block  
     | DEFAULT ':' Block        
-; 
+;
 
 Type
     : INT { $$ = "int32"; }
